@@ -1,4 +1,6 @@
-export const palettesById = {
+import { OpenPaletteColors } from './types';
+
+export const palettesById: Record<number, OpenPaletteColors> = {
   '0': ['#ee7722', '#dd44cc', '#ee8833', '#cc99bb', '#775511'],
   '1': ['#44ddcc', '#882222', '#883377', '#77cc88', '#bb77ff'],
   '2': ['#7733bb', '#992233', '#ff3322', '#44dd88', '#22dd88'],

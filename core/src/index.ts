@@ -1,13 +1,23 @@
 import { palettesById } from './palettesById';
+import { OpenPalette } from './types';
 
-export { palettesById };
+const palettes = Object.entries(palettesById).map(
+  ([id, colors]): OpenPalette => ({
+    id,
+    colors,
+  })
+);
 
-export type OpenPalette = {
-  id: string;
-  colors: [string, string, string, string, string];
-};
+Object.freeze(palettes);
 
-export const palettes = Object.entries(palettesById).map(([id, colors]) => ({
-  id,
-  colors,
-}));
+export function getPalettes(): OpenPalette[] {
+  return palettes;
+}
+
+export function getColors(paletteId: number) {
+  if (paletteId < 0 || paletteId > 9999) {
+    throw new Error(`Invalid palette id: ${paletteId}`);
+  }
+
+  return palettes[paletteId].colors;
+}
