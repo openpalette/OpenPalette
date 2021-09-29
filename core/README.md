@@ -30,7 +30,7 @@ Returns an array of all palettes.
 ```ts
 import { getPalettes } from '@openpalette/core';
 
-console.log(getPalettes()); // => [{ id: "0", colors: ['#ee7722', ...]}, ...]
+console.log(getPalettes()); // => [{ id: 0, colors: ['#ee7722', ...]}, ...]
 ```
 
 ### `getColors`
