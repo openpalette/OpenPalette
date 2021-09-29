@@ -4,5 +4,5 @@ Tools for creating things with OpenPalette colors.
 
 ## Packages
 
-- [@openpalette/core](./core) - Use the OpenPalette palette data
-- [@openpalette/color](./color) - Utilities for working with color
+- [@openpalette/core](./packages/core) - Use the OpenPalette palette data
+- [@openpalette/color](./packages/color) - Utilities for working with color
