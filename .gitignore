@@ -31,3 +31,6 @@ dist
 
 # custom
 .eslintcache
+.parcel-cache
+.cache
+*.log
