@@ -1,10 +1,11 @@
+import { BigNumber } from '@ethersproject/bignumber';
 import { createAddress } from '.';
 import { Address } from './address';
 
 export interface IERC721Contract {
-  ownerOf(tokenId: number): Promise<Address>;
-  balanceOf(owner: Address): Promise<number>;
-  tokenOfOwnerByIndex(owner: Address, index: number): Promise<number>;
+  ownerOf(tokenId: BigNumber): Promise<Address>;
+  balanceOf(owner: Address): Promise<BigNumber>;
+  tokenOfOwnerByIndex(owner: Address, index: BigNumber): Promise<BigNumber>;
 }
 
 /**
@@ -14,15 +15,15 @@ export async function getBalance(
   contract: IERC721Contract,
   owner: Address
 ): Promise<number> {
-  let balance: number;
+  let balance: BigNumber;
 
   try {
     balance = await contract.balanceOf(owner);
   } catch (e) {
-    balance = 0;
+    return 0;
   }
 
-  return balance;
+  return balance.toNumber();
 }
 
 /**
@@ -35,7 +36,7 @@ export async function getOwner(
   let owner: string;
 
   try {
-    owner = await contract.ownerOf(tokenId);
+    owner = await contract.ownerOf(BigNumber.from(tokenId));
   } catch (e) {
     return undefined;
   }
@@ -52,18 +53,18 @@ export async function getOwner(
 export async function getTokensForOwner(
   contract: IERC721Contract,
   owner: Address
-) {
+): Promise<number[]> {
   const balance = await getBalance(contract, owner);
 
-  const promises: Promise<number>[] = [];
+  const promises: Promise<BigNumber>[] = [];
 
   for (let index = 0; index < balance; index++) {
-    promises.push(contract.tokenOfOwnerByIndex(owner, index));
+    promises.push(contract.tokenOfOwnerByIndex(owner, BigNumber.from(index)));
   }
 
   const settled = await Promise.allSettled(promises);
 
   return settled.flatMap(item =>
-    item.status === 'fulfilled' ? [item.value] : []
+    item.status === 'fulfilled' ? [item.value.toNumber()] : []
   );
 }

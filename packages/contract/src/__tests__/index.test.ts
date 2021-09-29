@@ -1,3 +1,4 @@
+import { BigNumber } from '@ethersproject/bignumber';
 import { Address, createAddress, getBalance, getOwner } from '..';
 import { getTokensForOwner, IERC721Contract } from '../functions';
 
@@ -5,10 +6,10 @@ const ownerWith3 = createAddress('0xA');
 const ownerWith1 = createAddress('0xB');
 const ownerWith0 = createAddress('0xC');
 
-const tokens: Record<Address, number[]> = {
-  [ownerWith3]: [0, 1, 2],
-  [ownerWith1]: [4],
-};
+const tokens: Map<Address, BigNumber[]> = new Map([
+  [ownerWith1, [BigNumber.from(4)]],
+  [ownerWith3, [BigNumber.from(0), BigNumber.from(1), BigNumber.from(2)]],
+]);
 
 type MockContractParameters = {
   alwaysThrowNetworkError?: boolean;
@@ -20,19 +21,23 @@ const createMockContract = ({
   balanceOf: async owner => {
     if (alwaysThrowNetworkError) throw new Error('Network Error');
 
-    const tokensForOwner = tokens[owner];
+    const tokensForOwner = tokens.get(owner);
 
-    return tokensForOwner ? tokensForOwner.length : 0;
+    if (!tokensForOwner) return BigNumber.from(0);
+
+    return BigNumber.from(tokensForOwner.length);
   },
 
   ownerOf: async tokenId => {
     if (alwaysThrowNetworkError) throw new Error('Network Error');
 
-    const found = Object.keys(tokens)
-      .map(createAddress)
-      .find(key => {
-        return tokens[key].includes(tokenId);
-      });
+    const found = [...tokens.keys()].map(createAddress).find(key => {
+      const list = tokens.get(key) ?? [];
+
+      return list
+        .map((bn: BigNumber) => bn.toNumber())
+        .includes(tokenId.toNumber());
+    });
 
     if (!found) throw new Error('ERC721: owner query for nonexistent token');
 
@@ -42,7 +47,13 @@ const createMockContract = ({
   tokenOfOwnerByIndex: async (owner, index) => {
     if (alwaysThrowNetworkError) throw new Error('Network Error');
 
-    return tokens[owner][index];
+    const tokensForOwner = tokens.get(owner);
+
+    if (!tokensForOwner || tokensForOwner.length <= index.toNumber()) {
+      throw new Error('ERC721Enumerable: owner index out of bounds');
+    }
+
+    return tokensForOwner[index.toNumber()];
   },
 });
 
