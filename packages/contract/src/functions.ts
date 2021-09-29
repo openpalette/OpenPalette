@@ -64,7 +64,9 @@ export async function getTokensForOwner(
 
   const settled = await Promise.allSettled(promises);
 
-  return settled.flatMap(item =>
-    item.status === 'fulfilled' ? [item.value.toNumber()] : []
-  );
+  return settled
+    .flatMap(item =>
+      item.status === 'fulfilled' ? [item.value.toNumber()] : []
+    )
+    .sort();
 }

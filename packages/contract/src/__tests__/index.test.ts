@@ -7,8 +7,8 @@ const ownerWith1 = createAddress('0xB');
 const ownerWith0 = createAddress('0xC');
 
 const tokens: Map<Address, BigNumber[]> = new Map([
+  [ownerWith3, [BigNumber.from(1), BigNumber.from(0), BigNumber.from(2)]],
   [ownerWith1, [BigNumber.from(4)]],
-  [ownerWith3, [BigNumber.from(0), BigNumber.from(1), BigNumber.from(2)]],
 ]);
 
 type MockContractParameters = {
