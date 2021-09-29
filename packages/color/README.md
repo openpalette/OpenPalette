@@ -1,26 +1,33 @@
 # @openpalette/core
 
-A library for interacting with OpenPalette data.
+A library for working with OpenPalette colors.
 
 ```bash
-npm install --save @openpalette/core
+npm install --save @openpalette/color
 ```
 
 OR
 
 ```bash
-yarn add @openpalette/core
+yarn add @openpalette/color
 ```
 
 ## API
 
-- [hexToRgba](#hexToRgba)
-- [hexToHsva](#hexToHsva)
+- **hexToRgba**
+- **hexToHsva**
+- **rgbaToHsva**
+- **rgbaToHex**
+- **hsvaToRgba**
+- **hsvaToHex**
+- **getLuminance**
 
----
+### Usage
 
-### `getPalettes`
+You can use this library to find the correct text color to show on an OpenPalette hex color background.
 
-Returns an array of all palettes.
-
-**Type**: `function getPalettes(): OpenPalette[]`
+```ts
+const paletteColor = '#abcdef';
+const luminance = getLuminance(hexToRgba(paletteColor));
+const textColor = luminance > 0.5 ? 'black' : 'white';
+```

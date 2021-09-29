@@ -4,7 +4,7 @@
     "name": "Devin Abbott",
     "email": "dabbott@noyasoftware.com"
   },
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/core.esm.js",
