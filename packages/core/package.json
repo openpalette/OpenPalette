@@ -4,7 +4,7 @@
     "name": "Devin Abbott",
     "email": "dabbott@noyasoftware.com"
   },
-  "version": "0.2.1",
+  "version": "0.3.0",
   "license": "MIT",
   "repository": "https://github.com/openpalette/OpenPalette",
   "main": "dist/index.js",

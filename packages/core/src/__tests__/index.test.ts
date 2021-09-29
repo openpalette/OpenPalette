@@ -1,4 +1,4 @@
-import { getColors, getPalettes } from '..';
+import { getColors, getPaletteById, getPalettes, isValidPaletteId } from '..';
 
 const palettes = getPalettes();
 
@@ -9,6 +9,22 @@ it('gets palettes', () => {
     id: 0,
     colors: ['#ee7722', '#dd44cc', '#ee8833', '#cc99bb', '#775511'],
   });
+});
+
+it('gets palettes by id', () => {
+  expect(getPaletteById(0)).toEqual(palettes[0]);
+  expect(getPaletteById(9999)).toEqual(palettes[9999]);
+  expect(() => {
+    return getPaletteById(10000);
+  }).toThrowError();
+});
+
+it('validates ids', () => {
+  expect(isValidPaletteId(0)).toEqual(true);
+  expect(isValidPaletteId(9999)).toEqual(true);
+  expect(isValidPaletteId(-1)).toEqual(false);
+  expect(isValidPaletteId(10000)).toEqual(false);
+  expect(isValidPaletteId(0.5)).toEqual(false);
 });
 
 it('get colors by id', () => {
