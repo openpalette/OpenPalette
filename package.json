@@ -1,0 +1,17 @@
+{
+  "private": true,
+  "name": "openpalette",
+  "version": "0.0.0",
+  "repository": "git@github.com:openpalette/OpenPalette.git",
+  "author": {
+    "name": "Devin Abbott",
+    "email": "dabbott@noyasoftware.com"
+  },
+  "license": "MIT",
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  }
+}

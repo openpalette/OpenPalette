@@ -1,6 +1,9 @@
 {
   "name": "@openpalette/core",
-  "author": "Devin Abbott",
+  "author": {
+    "name": "Devin Abbott",
+    "email": "dabbott@noyasoftware.com"
+  },
   "version": "0.2.1",
   "license": "MIT",
   "main": "dist/index.js",
@@ -29,12 +32,6 @@
     "hooks": {
       "pre-commit": "tsdx lint"
     }
-  },
-  "prettier": {
-    "printWidth": 80,
-    "semi": true,
-    "singleQuote": true,
-    "trailingComma": "es5"
   },
   "size-limit": [
     {
