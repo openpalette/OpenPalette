@@ -3,7 +3,7 @@ import { OpenPalette } from './types';
 
 const palettes = Object.entries(palettesById).map(
   ([id, colors]): OpenPalette => ({
-    id,
+    id: Number(id),
     colors,
   })
 );
