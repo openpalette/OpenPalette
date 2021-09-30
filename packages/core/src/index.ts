@@ -1,6 +1,8 @@
 import { palettesById } from './palettesById';
 import { OpenPalette } from './types';
 
+export { OpenPalette };
+
 const palettes = Object.entries(palettesById).map(
   ([id, colors]): OpenPalette => ({
     id: Number(id),
