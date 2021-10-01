@@ -1,4 +1,4 @@
-import { EthereumChainName } from './chain';
+import { Address, ChainId, CHAIN_ID, createAddress } from '.';
 
 export const ABI = [
   'event Approval(address indexed owner, address indexed approved, uint256 indexed tokenId)',
@@ -34,18 +34,19 @@ export const ABI = [
   'function transferOwnership(address newOwner)',
 ];
 
-const addresses: Record<EthereumChainName, string> = {
-  mainnet: '0x1308c158e60D7C4565e369Df2A86eBD853EeF2FB',
-  rinkeby: '0x6C989C4Eda8E3fABce543Af5bfaa0D67b256354e',
+const addresses: Record<ChainId, Address> = {
+  [CHAIN_ID.MAINNET]: createAddress(
+    '0x1308c158e60D7C4565e369Df2A86eBD853EeF2FB'
+  ),
+  [CHAIN_ID.RINKEBY]: createAddress(
+    '0x6C989C4Eda8E3fABce543Af5bfaa0D67b256354e'
+  ),
 };
 
-export function setContractAddress(
-  chainName: EthereumChainName,
-  address: string
-) {
-  addresses[chainName] = address;
+export function setContractAddress(chainId: ChainId, address: Address) {
+  addresses[chainId] = address;
 }
 
-export function getContractAddress(chainName: EthereumChainName): string {
-  return addresses[chainName];
+export function getContractAddress(chainId: ChainId): Address {
+  return addresses[chainId];
 }
