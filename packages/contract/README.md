@@ -14,7 +14,7 @@ yarn add @openpalette/contract
 
 ## Usage
 
-This library includes utilities for calling the OpenPalette contract, such as the contract adress/ABI and functions for fetching tokens. However, it doesn't include `ethers` directly, so it's up to you to provide the contract object itself.
+This library includes utilities for calling the OpenPalette contract, such as the contract address/ABI and functions for fetching tokens. However, it doesn't include `ethers` directly, so it's up to you to provide the contract object itself.
 
 Here's a minimal TypeScript example of fetching tokens for an address:
 
