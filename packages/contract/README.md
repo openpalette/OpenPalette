@@ -16,20 +16,25 @@ yarn add @openpalette/contract
 
 This library includes utilities for calling the OpenPalette contract, such as the contract adress/ABI and functions for fetching tokens. However, it doesn't include `ethers` directly, so it's up to you to provide the contract object itself.
 
-Here's a minimal example of fetching tokens for an address:
+Here's a minimal TypeScript example of fetching tokens for an address:
+
+> Try it live on [CodeSandbox](https://codesandbox.io/s/fetch-openpalette-tokens-vfk02?file=/src/index.ts)
 
 ```ts
 import { ethers } from 'ethers';
+import detectEthereumProvider from '@metamask/detect-provider';
 import {
   ABI,
-  CHAIN_ID
+  CHAIN_ID,
   createAddress,
-  ERC721Contract,
+  IERC721Contract,
   getContractAddress,
-  getTokenForOwner,
+  getTokensForOwner,
 } from '@openpalette/contract';
 
 async function fetchTokens() {
+  const ethereum: any = await detectEthereumProvider();
+
   await ethereum.enable();
 
   const provider = new ethers.providers.Web3Provider(ethereum);
@@ -83,9 +88,9 @@ These utility functions simplify making contract API calls. These functions _do 
 
 ### `createAddress`
 
-Creates a branded Address string. Also does minimal address validation.
+Creates a branded `Address` string. Also does minimal address validation.
 
-**Type**: `function createAddress(address: string): Address`
+**Type**: `function createAddress(string: string): Address`
 
 #### Example
 
@@ -98,9 +103,9 @@ console.log(createAddress('0x5BF4be9de72713bFE39A30EbE0691afd5fb7413a'));
 
 ### `addressToString`
 
-Creates a branded Address string. Also does minimal address validation.
+Converts from `Address` to `string`.
 
-**Type**: `function addressToString(address: string): Address`
+**Type**: `function addressToString(address: Address): string`
 
 #### Example
 
