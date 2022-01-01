@@ -34,6 +34,8 @@ export const ABI = [
   'function transferOwnership(address newOwner)',
 ];
 
+const nullAddress = createAddress('0x0000000000000000000000000000000000000000');
+
 const addresses: Record<ChainId, Address> = {
   [CHAIN_ID.MAINNET]: createAddress(
     '0x1308c158e60D7C4565e369Df2A86eBD853EeF2FB'
@@ -41,6 +43,10 @@ const addresses: Record<ChainId, Address> = {
   [CHAIN_ID.RINKEBY]: createAddress(
     '0x6C989C4Eda8E3fABce543Af5bfaa0D67b256354e'
   ),
+  [CHAIN_ID.ROPSTEN]: nullAddress,
+  [CHAIN_ID.GOERLI]: nullAddress,
+  [CHAIN_ID.POLYGON]: nullAddress,
+  [CHAIN_ID.POLYGON_TESTNET]: nullAddress,
 };
 
 export function setContractAddress(chainId: ChainId, address: Address) {

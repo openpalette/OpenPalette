@@ -1,6 +1,10 @@
-export type ChainId = '0x1' | '0x4';
+export type ChainId = '0x1' | '0x3' | '0x4' | '0x5' | '0x89' | '0x13881';
 
 export const CHAIN_ID = {
   MAINNET: '0x1',
+  ROPSTEN: '0x3',
   RINKEBY: '0x4',
+  GOERLI: '0x5',
+  POLYGON: '0x89',
+  POLYGON_TESTNET: '0x13881',
 } as const;
