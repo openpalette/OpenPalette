@@ -46,7 +46,7 @@ const addresses: Record<ChainId, Address> = {
   [CHAIN_ID.ROPSTEN]: nullAddress,
   [CHAIN_ID.GOERLI]: nullAddress,
   [CHAIN_ID.POLYGON]: nullAddress,
-  [CHAIN_ID.POLYGON_TESTNET]: nullAddress,
+  [CHAIN_ID.MUMBAI]: nullAddress,
 };
 
 export function setContractAddress(chainId: ChainId, address: Address) {

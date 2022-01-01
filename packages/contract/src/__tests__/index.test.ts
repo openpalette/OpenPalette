@@ -1,5 +1,12 @@
 import { BigNumber } from '@ethersproject/bignumber';
-import { Address, createAddress, getBalance, getOwner } from '..';
+import {
+  Address,
+  CHAIN_ID,
+  createAddress,
+  getBalance,
+  getChainName,
+  getOwner,
+} from '..';
 import { getTokensForOwner, IERC721Contract } from '../functions';
 
 const ownerWith3 = createAddress('0xA');
@@ -100,6 +107,15 @@ it('gets tokens', async () => {
 
   const failingContract = createMockContract({ alwaysThrowNetworkError: true });
   expect(await getTokensForOwner(failingContract, ownerWith3)).toEqual([]);
+});
+
+it('gets chain name', () => {
+  expect(getChainName(CHAIN_ID.MAINNET)).toEqual('mainnet');
+  expect(getChainName(CHAIN_ID.RINKEBY)).toEqual('rinkeby');
+  expect(getChainName(CHAIN_ID.ROPSTEN)).toEqual('ropsten');
+  expect(getChainName(CHAIN_ID.GOERLI)).toEqual('goerli');
+  expect(getChainName(CHAIN_ID.POLYGON)).toEqual('polygon');
+  expect(getChainName(CHAIN_ID.MUMBAI)).toEqual('mumbai');
 });
 
 export {};
